@@ -53,8 +53,8 @@ const ArticleItem: React.FC<ArticleItemProps> = ({
         color={
           isMobile()
             ? isActive
-              ? globalColors.articleItemActive
-              : globalColors.articleItemColor
+              ? globalColors.articleItemColor
+              : globalColors.articleItemActive
             : globalColors.articleItemColor
         }
         isDisabled

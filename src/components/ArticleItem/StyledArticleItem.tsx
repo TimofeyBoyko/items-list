@@ -42,6 +42,7 @@ const StyledArticleItem = styled.div<StyledArticleItemProps>`
 
   @media ${mobile} {
     width: 36px;
+    height: 100%;
     justify-content: center;
 
     background-color: unset !important;
