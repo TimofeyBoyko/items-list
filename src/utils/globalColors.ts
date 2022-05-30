@@ -14,6 +14,10 @@ const globalColors = {
   backgroundActive: "#ECEEF1",
   backgroundDisabled: "#F8F9F9",
   backgroundError: "#FFFFFF",
+
+  iconButton: "#D0D5DA",
+  iconButtonHover: "#AEAEAE",
+  iconButtonActive: "#333333",
 };
 
 export default globalColors;
