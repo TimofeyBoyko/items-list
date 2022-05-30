@@ -19,6 +19,15 @@ const StyledIconButton = styled.div<StyledIconButtonProps>`
   align-items: center;
   justify-content: center;
 
+  div {
+    width: ${(props) => props.size};
+    height: ${(props) => props.size};
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   svg {
     width: ${(props) => props.size};
     height: ${(props) => props.size};
