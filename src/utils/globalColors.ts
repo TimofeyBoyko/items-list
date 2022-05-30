@@ -20,7 +20,8 @@ const globalColors = {
   iconButtonActive: "#333333",
 
   articleBackground: "#F8F9F9",
-  articleItemHover: "#DFE2E3",
+  articleItemHover: "#EEEEEE",
+  articleItemActive: "#DFE2E3",
   articleItemColor: "#555F65",
 };
 
