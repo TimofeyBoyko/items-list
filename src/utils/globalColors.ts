@@ -18,6 +18,8 @@ const globalColors = {
   iconButton: "#D0D5DA",
   iconButtonHover: "#AEAEAE",
   iconButtonActive: "#333333",
+
+  articleBackground: "#F8F9F9",
 };
 
 export default globalColors;
