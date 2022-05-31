@@ -43,6 +43,8 @@ const StyledHeader = styled.div`
   justify-content: flex-start;
 
   padding: 0 16px;
+
+  box-sizing: border-box;
 `;
 
 export { StyledArticle, StyledHeader };

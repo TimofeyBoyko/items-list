@@ -13,7 +13,7 @@ const { ArticleItem, Text } = components;
 const { isMobile } = utils.device;
 
 const ArticleItemList: IArticleItem[] = [
-  { key: "all", label: "All card", iconUrl: "/images/article.user.react.svg" },
+  { key: "all", label: "All cards", iconUrl: "/images/article.user.react.svg" },
   {
     key: "favorites",
     label: "Favorites",
