@@ -1,32 +1,41 @@
 import React from "react";
 
-import components from "../../components";
-import utils from "../../utils";
+import { changeFavorite } from "../../store/cardSlice";
+
+import Text from "../../components/Text";
+import IconButton from "../../components/IconButton";
+
+import changeImageSize from "../../utils/changeImageSize";
+import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 
 import StyledCard from "./StyledCard";
-
-const { changeImageSize } = utils;
-
-const { Text, IconButton } = components;
 
 type CardProps = {
   propId: string;
   author: string;
   imageUrl: string;
-  isFavorites?: boolean;
+  isFavorite?: boolean;
 };
+
+const imgSize: string = "200";
 
 const Card: React.FC<CardProps> = ({
   propId,
   author,
   imageUrl,
-  isFavorites,
+  isFavorite,
 }) => {
+  const dispatch = useAppDispatch();
+
+  const onChangeFavorite = React.useCallback(() => {
+    dispatch(changeFavorite(propId));
+  }, [dispatch, propId]);
+
   return (
-    <StyledCard>
+    <StyledCard imgSize={imgSize}>
       <img
         className="card__image"
-        src={changeImageSize(imageUrl, "200")}
+        src={changeImageSize(imageUrl, imgSize)}
         alt={`img_${propId}`}
       />
       <div className="card__info">
@@ -34,7 +43,8 @@ const Card: React.FC<CardProps> = ({
         <IconButton
           icon="/images/favorite.react.svg"
           size="16px"
-          isActive={isFavorites}
+          isActive={isFavorite}
+          onClick={onChangeFavorite}
         />
       </div>
     </StyledCard>

@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const StyledCard = styled.div`
+type StyledCardProp = {
+  imgSize: string;
+};
+
+const StyledCard = styled.div<StyledCardProp>`
   min-width: 220px;
   height: 300px;
 
@@ -15,8 +19,8 @@ const StyledCard = styled.div`
   padding: 0 10px;
 
   .card__image {
-    width: 200px;
-    height: 200px;
+    width: ${(props) => props.imgSize}px;
+    height: ${(props) => props.imgSize}px;
 
     margin-bottom: 20px;
 
