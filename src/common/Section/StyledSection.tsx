@@ -28,10 +28,10 @@ const StyledSection = styled.section`
     width: 100%;
     height: 100%;
 
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
 
-    padding: 0px 20px;
+    padding: 0px 20px 0 20px;
 
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
