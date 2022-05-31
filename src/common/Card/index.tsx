@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { changeFavorite } from "../../store/cardSlice";
 
@@ -33,11 +34,14 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <StyledCard imgSize={imgSize}>
-      <img
-        className="card__image"
-        src={changeImageSize(imageUrl, imgSize)}
-        alt={`img_${propId}`}
-      />
+      <Link to={`/card/${propId}`}>
+        <img
+          className="card__image"
+          src={changeImageSize(imageUrl, imgSize)}
+          alt={`img_${propId}`}
+        />
+      </Link>
+
       <div className="card__info">
         <Text text={author} fontSize={"16px"} lineHeight={"20px"} isBold />
         <IconButton
