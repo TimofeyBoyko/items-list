@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-import utils from "../../utils";
-
-const { mobile } = utils.device;
+import { mobile } from "../../utils/device";
 
 const StyledLayout = styled.main`
   width: 100vw;
