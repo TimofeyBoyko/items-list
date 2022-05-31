@@ -26,8 +26,10 @@ const Home = () => {
   }, [dispatch]);
 
   React.useEffect(() => {
-    getData();
-  }, [getData]);
+    if (cardList.length === 0) {
+      getData();
+    }
+  }, [cardList.length, getData]);
 
   return (
     <>
