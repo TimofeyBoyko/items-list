@@ -38,6 +38,7 @@ export const settingsSlice = createSlice({
     switchTab: (state, action: PayloadAction<string>) => {
       const key: string = action.payload;
       state.currentTab = key;
+      state.page = 1;
 
       state.activeTabs.forEach((tab, index) => {
         state.activeTabs[index].isActive = false;

@@ -18,8 +18,10 @@ const initialState: CardListState = {
 
 export const fetchCardList = createAsyncThunk(
   "card/fetchCardList",
-  async () => {
-    const response: ICard[] = await fetchList();
+  async (params: { page: number; imageOnPage: number }) => {
+    const { page, imageOnPage } = params;
+
+    const response: ICard[] = await fetchList(page, imageOnPage);
 
     return response;
   }
@@ -53,7 +55,7 @@ export const cardListSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchCardList.fulfilled, (state, action) => {
-        state.cardList = action.payload;
+        state.cardList.push(...action.payload);
 
         state.isLoading = false;
       });
