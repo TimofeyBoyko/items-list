@@ -1,38 +1,31 @@
 import React from "react";
 
-import components from "../../components";
+import { switchTab } from "../../store/settingsSlice";
 
-import utils from "../../utils";
+import ArticleItem from "../../components/ArticleItem";
+import Text from "../../components/Text";
 
+import { isMobile } from "../../utils/device";
+import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import { IArticleItem } from "../../utils/types";
 
 import { StyledArticle, StyledHeader } from "./StyledArticle";
 
-const { ArticleItem, Text } = components;
-
-const { isMobile } = utils.device;
-
-const ArticleItemList: IArticleItem[] = [
-  { key: "all", label: "All cards", iconUrl: "/images/article.user.react.svg" },
-  {
-    key: "favorites",
-    label: "Favorites",
-    iconUrl: "/images/article.favorites.react.svg",
-  },
-];
-
 type ArticleProps = {};
 
 const Article: React.FC<ArticleProps> = ({}) => {
-  const [selectedItem, setSelectedItem] = React.useState<string>(
-    ArticleItemList[0].key
-  );
+  const { activeTabs, currentTab } = useAppSelector(({ Settings }) => ({
+    activeTabs: Settings.activeTabs,
+    currentTab: Settings.currentTab,
+  }));
+
+  const dispatch = useAppDispatch();
 
   const changeItem: (value: string) => void = React.useCallback(
     (value) => {
-      if (selectedItem !== value) setSelectedItem(value);
+      if (currentTab !== value) dispatch(switchTab(value));
     },
-    [selectedItem]
+    [currentTab, dispatch]
   );
 
   return (
@@ -48,13 +41,13 @@ const Article: React.FC<ArticleProps> = ({}) => {
           />
         </StyledHeader>
       )}
-      {ArticleItemList.map((item: IArticleItem) => (
+      {activeTabs.map((item: IArticleItem) => (
         <ArticleItem
           key={item.key}
           text={item.label}
           iconUrl={item.iconUrl}
           value={item.key}
-          isActive={selectedItem === item.key}
+          isActive={item.isActive}
           onClick={changeItem}
         />
       ))}

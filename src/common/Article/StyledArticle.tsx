@@ -1,10 +1,7 @@
 import styled from "styled-components";
 
-import utils from "../../utils";
-
-const { globalColors, device } = utils;
-
-const { mobile } = device;
+import globalColors from "../../utils/globalColors";
+import { mobile } from "../../utils/device";
 
 const StyledArticle = styled.article`
   width: 256px;
