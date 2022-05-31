@@ -1,5 +1,7 @@
 import React from "react";
 
+import Pagination from "../Pagination";
+
 import Text from "../../components/Text";
 
 import { useAppSelector } from "../../utils/hooks";
@@ -11,8 +13,9 @@ type SectionProps = {
 };
 
 const Section = ({ children }: SectionProps) => {
-  const { currentLabel } = useAppSelector(({ Settings }) => ({
+  const { currentLabel, currentTab } = useAppSelector(({ Settings }) => ({
     currentLabel: Settings.currentLabel,
+    currentTab: Settings.currentTab,
   }));
 
   return (
@@ -27,7 +30,11 @@ const Section = ({ children }: SectionProps) => {
         />
       </div>
       <div className="section_body">{children}</div>
-      <div className="section_pagination"></div>
+      {currentTab && (
+        <div className="section_pagination">
+          <Pagination />
+        </div>
+      )}
     </StyledSection>
   );
 };
