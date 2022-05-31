@@ -7,6 +7,7 @@ import Text from "../Text";
 import IconButton from "../IconButton";
 
 import StyledArticleItem from "./StyledArticleItem";
+import { Link } from "react-router-dom";
 
 export type ArticleItemProps = {
   text: string;
@@ -36,38 +37,40 @@ const ArticleItem: React.FC<ArticleItemProps> = ({
   };
 
   return (
-    <StyledArticleItem
-      id={id}
-      className={className}
-      style={style}
-      data-testid={testId}
-      isActive={isActive}
-      onClick={onClickAction}
-    >
-      <IconButton
-        className="article-item__icon"
-        icon={iconUrl}
-        size={isMobile() ? "24px" : "16px"}
-        color={
-          isMobile()
-            ? isActive
-              ? globalColors.articleItemColor
-              : globalColors.articleItemActive
-            : globalColors.articleItemColor
-        }
-        isDisabled
-      />
-      {!isMobile() && (
-        <Text
-          text={text}
-          color={globalColors.articleItemColor}
-          fontSize={"16px"}
-          lineHeight={"20px"}
-          fontWeight={"600"}
-          noUserSelect
+    <Link to="/">
+      <StyledArticleItem
+        id={id}
+        className={className}
+        style={style}
+        data-testid={testId}
+        isActive={isActive}
+        onClick={onClickAction}
+      >
+        <IconButton
+          className="article-item__icon"
+          icon={iconUrl}
+          size={isMobile() ? "24px" : "16px"}
+          color={
+            isMobile()
+              ? isActive
+                ? globalColors.articleItemColor
+                : globalColors.articleItemActive
+              : globalColors.articleItemColor
+          }
+          isDisabled
         />
-      )}
-    </StyledArticleItem>
+        {!isMobile() && (
+          <Text
+            text={text}
+            color={globalColors.articleItemColor}
+            fontSize={"16px"}
+            lineHeight={"20px"}
+            fontWeight={"600"}
+            noUserSelect
+          />
+        )}
+      </StyledArticleItem>
+    </Link>
   );
 };
 
