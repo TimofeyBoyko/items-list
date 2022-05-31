@@ -9,8 +9,10 @@ interface IFetchCard {
   width: number;
 }
 
-export async function fetchCardList() {
-  const res = await axios.get("https://picsum.photos/v2/list");
+export async function fetchCardList(page: number, imageOnPage: number) {
+  const res = await axios.get(
+    `https://picsum.photos/v2/list?page=${page}&limit=${imageOnPage}`
+  );
 
   const data = res.data.map((item: IFetchCard) => ({
     ...item,
