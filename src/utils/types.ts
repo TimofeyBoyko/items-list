@@ -4,6 +4,11 @@ export interface IArticleItem {
   iconUrl: string;
 }
 
-export interface Test {
-  test: string;
+export interface ICard {
+  id: string;
+  url: string;
+  author: string;
+  download_url: string;
+  height: number;
+  width: number;
 }
