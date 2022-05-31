@@ -8,22 +8,27 @@ import { useAppDispatch, useAppSelector } from "../utils/hooks";
 import { fetchCardList } from "../store/cardSlice";
 
 const Home = () => {
-  const { cardList, isLoading, favoriteCardList, currentTab } = useAppSelector(
-    ({ CardList, Settings }) => ({
-      cardList: CardList.cardList,
-      favoriteCardList: CardList.favoriteCardList,
-      isLoading: CardList.isLoading,
-      currentTab: Settings.currentTab,
-    })
-  );
-
-  const currentCardList = currentTab === "all" ? cardList : favoriteCardList;
+  const {
+    cardList,
+    isLoading,
+    favoriteCardList,
+    currentTab,
+    page,
+    imageOnPage,
+  } = useAppSelector(({ CardList, Settings }) => ({
+    cardList: CardList.cardList,
+    favoriteCardList: CardList.favoriteCardList,
+    isLoading: CardList.isLoading,
+    currentTab: Settings.currentTab,
+    page: Settings.page,
+    imageOnPage: Settings.imageOnPage,
+  }));
 
   const dispatch = useAppDispatch();
 
   const getData = React.useCallback(async () => {
-    dispatch(fetchCardList());
-  }, [dispatch]);
+    dispatch(fetchCardList({ page, imageOnPage }));
+  }, [dispatch, page, imageOnPage]);
 
   React.useEffect(() => {
     if (cardList.length === 0) {
@@ -31,12 +36,17 @@ const Home = () => {
     }
   }, [cardList.length, getData]);
 
-  return (
-    <>
-      {isLoading ? (
-        <p>Loading ...</p>
-      ) : (
-        currentCardList?.map((card: ICard) => (
+  const renderCardList = () => {
+    const currentCardList = currentTab === "all" ? cardList : favoriteCardList;
+
+    const renderedCardList = currentCardList.slice(
+      imageOnPage * (page - 1),
+      imageOnPage * page
+    );
+
+    return (
+      <>
+        {renderedCardList?.map((card: ICard) => (
           <Card
             key={card.id}
             propId={card.id}
@@ -44,10 +54,12 @@ const Home = () => {
             imageUrl={card.download_url}
             isFavorite={card.isFavorite}
           />
-        ))
-      )}
-    </>
-  );
+        ))}
+      </>
+    );
+  };
+
+  return <>{isLoading ? <p>Loading ...</p> : <>{renderCardList()}</>}</>;
 };
 
 export default React.memo(Home);
