@@ -1,14 +1,12 @@
 import React from "react";
 
-import utils from "../../utils";
+import globalColors from "../../utils/globalColors";
+import { isMobile } from "../../utils/device";
 
 import Text from "../Text";
 import IconButton from "../IconButton";
 
 import StyledArticleItem from "./StyledArticleItem";
-
-const { globalColors } = utils;
-const { isMobile } = utils.device;
 
 export type ArticleItemProps = {
   text: string;

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-import utils from "../../utils";
-
-const { globalColors } = utils;
+import globalColors from "../../utils/globalColors";
 
 const StyledButton = styled.button`
   display: flex;

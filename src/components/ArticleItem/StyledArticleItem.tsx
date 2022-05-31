@@ -1,10 +1,7 @@
 import styled, { css } from "styled-components";
 
-import utils from "../../utils";
-
-const { globalColors } = utils;
-
-const { mobile } = utils.device;
+import globalColors from "../../utils/globalColors";
+import { mobile } from "../../utils/device";
 
 type StyledArticleItemProps = {
   isActive?: boolean;

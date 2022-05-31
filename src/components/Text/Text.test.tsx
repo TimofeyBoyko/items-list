@@ -2,11 +2,9 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import "jest-styled-components";
 
-import utils from "../../utils";
+import globalColors from "../../utils/globalColors";
 
 import Text, { TextProps } from ".";
-
-const { globalColors } = utils;
 
 const defaultProps: TextProps = {
   text: "Hello world!",
