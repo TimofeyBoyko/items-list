@@ -65,6 +65,9 @@ export const settingsSlice = createSlice({
     setImageOnPage: (state, action: PayloadAction<number>) => {
       state.imageOnPage = action.payload;
     },
+    setCurrentLabel: (state, action: PayloadAction<string>) => {
+      state.currentLabel = action.payload;
+    },
   },
 });
 
@@ -76,6 +79,7 @@ export const {
   decreaseImageOnPage,
   setImageOnPage,
   switchTab,
+  setCurrentLabel,
 } = settingsSlice.actions;
 
 export default settingsSlice.reducer;
