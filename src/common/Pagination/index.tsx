@@ -28,7 +28,8 @@ const Pagination: React.FC<PaginationProps> = () => {
   const currentCardList = currentTab === "all" ? cardList : favoriteCardList;
 
   React.useEffect(() => {
-    if (currentCardList.length === page * imageOnPage) {
+    console.log(currentCardList.length, page * imageOnPage);
+    if (currentCardList.length <= page * imageOnPage) {
       setIsMaxPage(true);
     } else {
       setIsMaxPage(false);
@@ -46,8 +47,10 @@ const Pagination: React.FC<PaginationProps> = () => {
     if (isMaxPage) {
       dispatch(fetchCardList({ page: page + 1, imageOnPage }));
     }
-    dispatch(increasePage());
-  }, [isMaxPage, dispatch, page, imageOnPage]);
+    if (page * imageOnPage === currentCardList.length || !isMaxPage) {
+      dispatch(increasePage());
+    }
+  }, [isMaxPage, dispatch, page, imageOnPage, currentCardList.length]);
 
   const onPrevClick = React.useCallback(() => {
     if (page > 1) {
@@ -65,7 +68,7 @@ const Pagination: React.FC<PaginationProps> = () => {
       <Button
         label={"Next page"}
         onClick={onNextClick}
-        isDisabled={currentCardList.length < imageOnPage}
+        isDisabled={page * imageOnPage !== currentCardList.length && isMaxPage}
       />
     </StyledPaginationContainer>
   );
